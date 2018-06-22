@@ -14,6 +14,7 @@ import {TournamentPage} from "../pages/tournament/tournament";
 import {StandingsPage} from "../pages/standings/standings";
 import {TeamHomePage} from "../pages/team-home/team-home";
 import {EliteApi} from "../shared/elit-api.service";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import {EliteApi} from "../shared/elit-api.service";
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

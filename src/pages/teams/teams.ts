@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {TeamDetailPage} from "../team-detail/team-detail";
 import {TeamHomePage} from "../team-home/team-home";
+import { EliteApi } from '../../shared/elit-api.service';
 
 /**
  * Generated class for the TeamsPage page.
@@ -17,18 +18,22 @@ import {TeamHomePage} from "../team-home/team-home";
 })
 export class TeamsPage {
 
-  teams = [
-    { id: 1, name: 'HC Elite' },
-    { id: 2, name: 'Team Takeover' },
-    { id: 3, name: 'DC Thunder' }
-  ];
+  teams;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public eliteApi: EliteApi ) {
 
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TeamsPage');
+
+    const tourneyId = this.navParams.data.id
+    console.log('ionViewDidLoad TeamsPage',);
+    this.eliteApi.getTournamentData(tourneyId).subscribe(data =>{
+      this.teams = data.teams;
+    })
   }
 
   itemTapped(event, team) {
